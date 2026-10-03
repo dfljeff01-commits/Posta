@@ -1,0 +1,59 @@
+{
+  "version": "v0 (template)",
+  "note": "Posta 团队注册表模板——成员互相认识的唯一事实来源。复制到 $POSTA_HOME/agent/TEAM_ROSTER.json 后按实际团队填写。新成员入伙=加一个条目；身份未明的成员显式标 unknown，不许猜。",
+  "agents": [
+    {
+      "id": "foreman",
+      "suffix": "foreman",
+      "display": "监工（监督 agent，巡查循环本体）",
+      "host": "workstation-1",
+      "launch": { "mode": "cli", "cli": ["foreman-cli"], "notes": "监工本体，一般不作为执行者" },
+      "roles": ["巡查", "审核", "派发", "代裁执行"],
+      "history": [],
+      "eligibility": "监工角色；作为执行者时需检查与其他成员的署名冲突"
+    },
+    {
+      "id": "worker-cli",
+      "suffix": "worker",
+      "display": "示例：某 CLI 执行者",
+      "host": "workstation-1",
+      "model": "<provider>/<model-id>",
+      "launch": {
+        "mode": "cli",
+        "cli": ["<executor-cli>", "run"],
+        "notes": "无头可用；-c/--continue 续接会话保身份连续"
+      },
+      "roles": ["实现", "补证", "验收执行"],
+      "history": ["在此登记该成员的历史署名（哪些任务/哪些工件出自它）"],
+      "eligibility": "在此登记资格边界（例：不得验收自己编写的工具；非某实现作者等）"
+    },
+    {
+      "id": "reviewer-desktop",
+      "suffix": "reviewer",
+      "display": "示例：某桌面端只读复核者",
+      "host": "workstation-1",
+      "launch": {
+        "mode": "desktop-human",
+        "cli": ["<reviewer-cli>", "exec"],
+        "notes": "桌面端由人工转发驱动；cli 形态存在但惯例走人工"
+      },
+      "roles": ["只读复核"],
+      "history": [],
+      "eligibility": "只读复核合规；不得担任与自己署名重叠部分的验收"
+    },
+    {
+      "id": "initiator",
+      "suffix": null,
+      "display": "发起方（拆任务/终审）",
+      "host": "another-machine",
+      "launch": {
+        "mode": "human-relay",
+        "cli": null,
+        "notes": "拆任务/终审/额度授权；对信箱的访问方式按 ROADMAP Phase 2 落地"
+      },
+      "roles": ["任务拆解", "终审裁定", "额度授权"],
+      "history": [],
+      "eligibility": "终审权威，无冲突概念"
+    }
+  ]
+}
