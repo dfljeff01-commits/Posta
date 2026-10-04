@@ -27,8 +27,8 @@
 3. **团队注册表**（✅ 已落地）：成员身份/启动方式/历史署名/资格边界，路由与资格自查查表化；多机阶段扩展为按 host 分片联合注册表。
 4. **人类通知渠道**：`blocking` 级事件推即时通讯 webhook；`routine` 级攒日报。验收：人离开对话窗口也不会错过 blocking 事件超过 15 分钟。
 5. **TUI 动作键**：选中包裹 `d` 派发 / `v` 复活 / `a` 批准 / `e` 升级，每个动作照旧留痕。前提：只读版信任期满且零误报。
-6. **安装器**（启示见 STUDY/Omarchy）：`install.sh` 一条命令——建 $POSTA_HOME、装 tools、注册巡查、可选拉起 TUI。把 6 步手工 quickstart 压成 1 步。
-7. **POSTA SKILL.md**（启示见 STUDY/herdr）：把信箱协议写成任何 agent 可领取的技能（像 herdr 的 agent skill file），领了即入伙——也是进入 herdr skills 生态的通道。
+6. **安装器**（✅ 已落地）（启示见 STUDY/Omarchy）：`install.sh` 一条命令——建 $POSTA_HOME、装 tools、注册巡查、可选拉起 TUI。把 6 步手工 quickstart 压成 1 步。
+7. **POSTA SKILL.md**（✅ 已落地）（启示见 STUDY/herdr）：把信箱协议写成任何 agent 可领取的技能（像 herdr 的 agent skill file），领了即入伙——也是进入 herdr skills 生态的通道。
 
 ## Phase 3（中期）：双线与多任务并发
 
