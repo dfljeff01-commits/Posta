@@ -21,30 +21,13 @@
 | 协作手册 | `docs/PLAYBOOK.md` | 实战验证的角色/生命周期/坑与对策 |
 | 路线图 | `docs/ROADMAP.md` | 多机 / 多人 / 多线演进规划 |
 | 团队注册表示例 | `examples/TEAM_ROSTER.example.json` | 成员互相认识的唯一事实来源（模板） |
+| 安装器 | `install.sh` | 一条命令初始化实例：建目录树 / 装 tools / 放注册表 / 可选注册巡查 |
+| 协议技能 | `skills/POSTA.md` | 信箱协议写成任何 CLI agent 可领取的技能（领了即入伙） |
 
 ## 快速开始
 
 ```bash
-# 1. 建实例目录（一个实例 = 一个协作工作区）
-export POSTA_HOME=$HOME/posta-lab
-mkdir -p $POSTA_HOME/{agent,logs,tools,state}
-
-# 2. 装入系统
-cp src/*.py $POSTA_HOME/tools/
-cp examples/TEAM_ROSTER.example.json $POSTA_HOME/agent/TEAM_ROSTER.json
-#    ↑ 编辑它：填入你的团队成员（id/后缀/启动方式/角色/资格边界）
-
-# 3. 建信箱（名字可改，改了同步 tools/dispatchd.py 的 WATCH）
-mkdir -p ~/cto-tasks ~/ai-report-inbox ~/cto-handoffs
-
-# 4. 手动跑一次扫描器（纯记录模式，不启动任何 agent）
-python3 $POSTA_HOME/tools/dispatchd.py
-
-# 5. 打开监工台
-python3 $POSTA_HOME/tools/posta_tui.py     # 键位: q退出 r刷新 l切换跟随
-
-# 6. 装成巡查（cron 每 10 分钟）
-# */10 * * * * python3 $POSTA_HOME/tools/dispatchd.py
+bash install.sh [POSTA_HOME] [--with-cron]   # 默认装到 ~/posta-lab；结尾打印下一步
 ```
 
 设计要点：扫描器是**唯一的状态写入口**；TUI 与 Web 只读。巡查负责播报与监督闭环
