@@ -19,11 +19,21 @@ SEEN = STATE / "seen.json"
 PENDING = STATE / "pending.json"
 DISPATCH_LOG = LOGS / "dispatch.log"
 
-WATCH = {
-    "TASK": HOME / "cto-tasks",           # CTO → worker 任务包
-    "REPORT": HOME / "AI_REPORT_INBOX",   # worker → CTO 报告 / CTO 裁决 / 回执
-    "HANDOFF": HOME / "cto-handoffs",     # CTO 交接包
-}
+# 信箱：若 $POSTA_HOME/mailboxes 存在则用实例私有信箱（推荐），
+# 否则回退到家目录传统信箱（兼容早期实例）
+_mb = LAB / "mailboxes"
+if _mb.is_dir():
+    WATCH = {
+        "TASK": _mb / "tasks",           # 发起方 → 执行者 任务包
+        "REPORT": _mb / "reports",       # 执行者 → 发起方 报告 / 裁决 / 回执
+        "HANDOFF": _mb / "handoffs",     # 交接包
+    }
+else:
+    WATCH = {
+        "TASK": HOME / "cto-tasks",
+        "REPORT": HOME / "AI_REPORT_INBOX",
+        "HANDOFF": HOME / "cto-handoffs",
+    }
 
 # ROSTER 自 TEAM_ROSTER.json 加载（团队注册表=互相认识的唯一事实来源）
 # 结构: {suffix: (cli模板或None, 说明, launch_mode)}；launch_mode=cli 才允许被监工无头派发
